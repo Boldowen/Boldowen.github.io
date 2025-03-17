@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            text-align: center;
+            padding: 3rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A, #4CAF50);
+            animation: shimmer 2s infinite linear;
+            background-size: 200% 100%;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+        
+        h1 {
+            color: #3a3a3a;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1.5s;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 2px;
+            bottom: -10px;
+            left: 10%;
+            background-color: #4CAF50;
+            transform: scaleX(0);
+            animation: underline 1.5s forwards ease-in-out;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes underline {
+            to { transform: scaleX(1); }
+        }
+        
+        p {
+            color: #555;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            animation: fadeIn 2s;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 3rem;
+            animation: fadeIn 2.5s;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-yes {
+            background: linear-gradient(145deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .btn-yes:hover {
+            background: linear-gradient(145deg, #45a049, #4CAF50);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-no {
+            background: linear-gradient(145deg, #f5f5f5, #e1e1e1);
+            color: #555;
+        }
+        
+        .btn-no:hover {
+            background: linear-gradient(145deg, #e1e1e1, #f5f5f5);
+        }
+        
+        .hidden {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+        }
+        
+        .result {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #4CAF50;
+            display: none;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(76, 175, 80, 0.1);
+            z-index: -1;
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 5px solid white;
+            overflow: hidden;
+        }
+        
+        .photo-placeholder {
+            font-size: 80px;
+            color: #ccc;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes appear {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="floating-elements" id="floatingElements"></div>
+        
+        <div class="photo-frame">
+            <div class="photo-placeholder">📷</div>
+        </div>
+        
+        <h1>Will You Marry Me?</h1>
+        
+        <p>I've thought about this moment for a long time. You're the person I want to share my life with - through all of life's adventures, challenges, and joys.</p>
+        
+        <div class="buttons">
+            <button class="btn btn-yes" id="yesBtn">Yes</button>
+            <button class="btn btn-no" id="noBtn">No</button>
+        </div>
+        
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const result = document.getElementById('result');
+        const floatingElements = document.getElementById('floatingElements');
+        let attempts = 0;
+        
+        // Create floating decorative elements
+        for (let i = 0; i < 15; i++) {
+            createFloatingElement();
+        }
+        
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.classList.add('decoration');
+            
+            // Random position
+            element.style.left = Math.random() * 100 + '%';
+            element.style.top = Math.random() * 100 + '%';
+            
+            // Random size
+            const size = Math.random() * 50 + 10;
+            element.style.width = size + 'px';
+            element.style.height = size + 'px';
+            
+            // Random opacity
+            element.style.opacity = Math.random() * 0.5 + 0.1;
+            
+            floatingElements.appendChild(element);
+        }
+        
+        noBtn.addEventListener('mouseover', function() {
+            // After a few attempts, make the no button impossible to click
+            attempts++;
+            
+            if (attempts <= 3) {
+                // Move the button randomly
+                const x = Math.random() * 300 - 150;
+                const y = Math.random() * 200 - 100;
+                this.style.transform = `translate(${x}px, ${y}px)`;
+            } else {
+                // Make the button disappear
+                this.classList.add('hidden');
+            }
+        });
+        
+        noBtn.addEventListener('click', function() {
+            // In case they manage to click it
+            this.classList.add('hidden');
+            result.style.display = 'block';
+            result.style.color = '#4CAF50';
+            result.innerHTML = "I'll take that as a Yes!";
+            result.style.animation = 'appear 0.5s forwards';
+            
+            // Celebrate
+            celebrate();
+        });
+        
+        yesBtn.addEventListener('click', function() {
+            // Show success message
+            const buttons = document.querySelector('.buttons');
+            buttons.style.display = 'none';
+            
+            result.style.display = 'block';
+            result.style.color = '#4CAF50';
+            result.innerHTML = "I can't wait to spend the rest of my life with you!";
+            result.style.animation = 'appear 0.5s forwards';
+            
+            // Celebrate
+            celebrate();
+        });
+        
+        function celebrate() {
+            // Add some celebration effects
+            document.body.style.background = 'linear-gradient(135deg, #43cea2 0%, #185a9d 100%)';
+            document.body.style.backgroundSize = '400% 400%';
+            
+            // Clear existing floating elements
+            floatingElements.innerHTML = '';
+            
+            // Add celebration elements
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const element = document.createElement('div');
+                    element.classList.add('decoration');
+                    
+                    // Random position
+                    element.style.left = Math.random() * 100 + '%';
+                    element.style.top = '-50px';
+                    
+                    // Random size
+                    const size = Math.random() * 30 + 10;
+                    element.style.width = size + 'px';
+                    element.style.height = size + 'px';
+                    
+                    // Random color
+                    const hue = Math.random() * 60 + 100;
+                    element.style.backgroundColor = `hsla(${hue}, 70%, 60%, 0.7)`;
+                    
+                    // Animation
+                    element.style.animation = `fall ${Math.random() * 5 + 3}s linear forwards`;
+                    
+                    // Add falling animation
+                    const keyframes = `
+                        @keyframes fall {
+                            0% {
+                                transform: translateY(0) rotate(0deg);
+                                opacity: 1;
+                            }
+                            100% {
+                                transform: translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    const style = document.createElement('style');
+                    style.innerHTML = keyframes;
+                    document.head.appendChild(style);
+                    
+                    floatingElements.appendChild(element);
+                    
+                    // Remove element after animation
+                    setTimeout(() => {
+                        element.remove();
+                        style.remove();
+                    }, 8000);
+                    
+                }, i * 200);
+            }
+        }
+    </script>
+</body>
+</html>
