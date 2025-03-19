@@ -3,75 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title margin-top="30px" >ЁНДОН БОЛДБАЯР - Резюме</title>
+    <title>ЁНДОН БОЛДБАЯР - Резюме</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
         }
 
         body {
             display: flex;
             width: 100%;
-            background-color: #f5f5f5;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            padding: 40px 0;
         }
 
         .container {
             display: flex;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
         }
 
         .left-column {
-            width: 35%;
-            background-color: #2d2d2d;
+            width: 40%;
+            background-color: #3a4750;
             color: white;
-            padding: 20px;
+            padding: 40px;
+            position: relative;
         }
 
         .right-column {
-            width: 65%;
+            width: 60%;
             background-color: white;
-            padding: 20px 30px;
+            padding: 40px;
+        }
+
+        .profile-img-container {
+            margin-bottom: 30px;
+            text-align: center;
         }
 
         .profile-img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 20px;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 8px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transform: rotate(-3deg);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: rotate(0deg);
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
+            font-family: 'Raleway', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 5px;
+            color: #292929;
+            letter-spacing: -1px;
         }
 
         h2 {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #333;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #ff6b6b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        h3 {
-            font-size: 1.3rem;
+        .left-column h3 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
             text-transform: uppercase;
-            margin: 30px 0 15px 0;
-            color: white;
+            margin: 40px 0 20px 0;
+            color: #ff6b6b;
+            letter-spacing: 1px;
+            position: relative;
+            padding-left: 15px;
+            border-left: 4px solid #ff6b6b;
         }
 
         .right-column h3 {
-            color: #2d2d2d;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 25px 0;
+            color: #3a4750;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .right-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ff6b6b;
         }
 
         .section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .contact-info {
@@ -79,65 +125,172 @@
         }
 
         .contact-info p {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .contact-info p::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .education-info {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .education-info p {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .education-info p:first-child {
+            font-weight: 600;
+            color: #ff6b6b;
+        }
+
+        .education-info p:last-child {
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         ul {
-            margin-left: 20px;
+            list-style-type: none;
         }
 
-        li {
-            margin-bottom: 5px;
-            font-size: 0.9rem;
+        .left-column li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 25px;
+            transition: transform 0.2s ease;
+        }
+
+        .left-column li:hover {
+            transform: translateX(5px);
+        }
+
+        .left-column li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
         }
 
         .experience-item {
-            margin-bottom: 25px;
+            margin-bottom: 40px;
+            position: relative;
         }
 
-        .experience-header {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .experience-header .diamond {
-            width: 15px;
-            height: 15px;
-            background-color: #2d2d2d;
-            transform: rotate(45deg);
-            margin-right: 15px;
-        }
-
-        .experience-title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #eaeaea;
         }
 
         .experience-date {
-            color: #666;
+            font-weight: 500;
+            color: #ff6b6b;
             font-size: 0.9rem;
             margin-bottom: 10px;
+            display: inline-block;
         }
 
         .experience-company {
-            font-weight: bold;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #3a4750;
+        }
+
+        .right-column ul {
+            padding-left: 20px;
+        }
+
+        .right-column li {
             margin-bottom: 10px;
+            position: relative;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .right-column li::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            color: #ff6b6b;
         }
 
         .lorem-text {
-            color: #777;
-            font-size: 0.9rem;
-            line-height: 1.4;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .lorem-text::before {
+            content: '❝';
+            position: absolute;
+            left: 0;
+            top: -5px;
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .header {
+            position: relative;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .left-column, .right-column {
+                width: 100%;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="left-column">
-            <img src="procv.jpg" alt="Профайл зураг" class="profile-img">
+            <div class="profile-img-container">
+                <img src="procv.jpg" alt="Профайл зураг" class="profile-img">
+            </div>
             
             <h3>CONTACT</h3>
             <div class="contact-info">
@@ -151,7 +304,8 @@
                 <p>Монгол улсын их сургууль</p>
                 <p>Компьютерийн ухаан</p>
                 <p>2023 - 2027</p>
-                <br>
+            </div>
+            <div class="education-info">
                 <p>Hogwarts School of Witchcraft and Wizardry</p>
                 <p>Хар шидэт</p>
                 <p>1970-1976</p>
@@ -175,10 +329,7 @@
             
             <div class="section">
                 <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="diamond"></div>
-                        <h3>ТОВЧ ТАНИЛЦУУЛГА</h3>
-                    </div>
+                    <h3>ТОВЧ ТАНИЛЦУУЛГА</h3>
                     <p class="lorem-text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                         Nullam pharetfa in lorem et laceset. Donec hendrerit libero 
@@ -188,12 +339,9 @@
             </div>
             
             <div class="section">
+                <h3>АЖЛИЙН ТУРШИЛГА</h3>
+                
                 <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="diamond"></div>
-                        <h3>АЖЛИЙН ТУРШИЛГА</h3>
-                    </div>
-                    
                     <p class="experience-date">Салбарийн ажиллан | 2024 - 2025</p>
                     <p class="experience-company">Таван богд фүүдс ХХК</p>
                     <ul>
@@ -201,13 +349,17 @@
                         <li>Make</li>
                         <li>Flour</li>
                     </ul>
-                    
+                </div>
+                
+                <div class="experience-item">
                     <p class="experience-date">Гүйцэтгэх захирал | 1998 - 2007</p>
                     <p class="experience-company">Google</p>
                     <ul>
                         <li>Larry Page болон Sergey Brin хоёрт Google-г хийж өгсөн.</li>
                     </ul>
-                    
+                </div>
+                
+                <div class="experience-item">
                     <p class="experience-date">Хар шидээс хамгаалах урлагын багш | 1922-1932</p>
                     <p class="experience-company">Hogwarts School of Witchcraft and Wizardry</p>
                     <ul>
