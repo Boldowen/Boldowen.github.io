@@ -11,7 +11,7 @@
         }
         
         .header {
-            background-color: #352BA5;
+            background-color: #1B1B6C;
             color: white;
         }
         
@@ -38,12 +38,13 @@
         }
         
         .btn-pink {
-            background-color: #ff0066;
+            background-color: #f61067;
             color: white;
             border: none;
             text-transform: uppercase;
             font-weight: bold;
             padding: 8px 15px;
+            border-radius: 0px;
         }
         
         .content {
@@ -55,11 +56,12 @@
         }
         
         .messages-panel {
-            background-color: #ff0066;
+            background-color: #f61067;
             color: white;
             padding: 10px;
             margin-bottom: 20px;
             text-align: center;
+            border-radius: 0px;
         }
         
         .candidate-panel {
@@ -67,12 +69,14 @@
             color: white;
             padding: 20px;
             margin-top: 0px;
+            border-radius: 0px;
         }
         .candidate-header {
             background-color: #9090A5;
             margin-bottom: 0px;
             padding: 8px;
             color:white;
+            border-radius: 0px;
 
         }
         .candidate-fooder {
@@ -84,7 +88,8 @@
         .candidate-panel input,
         .candidate-panel button {
             width: 100%;
-            margin-top: 10px;
+            border-radius: 0px;
+            background-color: #1B1B6c;
         }
         
         .vote-panel {
@@ -96,30 +101,36 @@
         .progress {
             height: 8px;
             margin: 15px 0;
+            border-radius: 0px;
         }
         
         .progress-bar-pink {
-            background-color: #ff0066;
+            background-color: #f61067;
+            border-radius: 0px;
         }
         
         .progress-bar-teal {
-            background-color: #00e6b8;
+            background-color: #2ad392;
+            border-radius: 0px;
         }
         
         .vote-buttons {
             display: flex;
             justify-content: space-between;
+            border-radius: 0px;
         }
         
         .vote-buttons .btn {
             width: 48%;
+            border-radius: 0px;
         }
         
         .alert-custom {
-            background-color: #696cad;
+            background-color: #9090a5;
             color: white;
             padding: 15px;
             margin-top: 20px;
+            border-radius: 0px;
         }
         
         .footer {
@@ -127,6 +138,11 @@
             color: white;
             padding: 20px 30px;
             font-size: 12px;
+        }
+
+        #bi{
+            background-color: #f61067;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -163,7 +179,7 @@
                     
                     <!-- Video Embed -->
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=zIwLWfaAg-8" allowfullscreen></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/u1fLhL_VLgg" allowfullscreen></iframe>
                     </div>
                     
                     <!-- Alert -->
@@ -187,8 +203,10 @@
                     </div>
                     <div class="candidate-panel">
                         <p>You are a Starfleet Academy candidate. Greet the Captain in a <em>respectful</em> fashion.</p>
+                        <p style="background-color:#9090a5; height: 3px; margin: 0px"></p>
                         <input type="text" class="form-control" placeholder="Input your greeting...">
-                        <button class="btn btn-pink">SEND</button>
+                        <p style="background-color:#9090a5; height: 4px; margin: 0px"></p>
+                        <button class="btn btn-pink" id="bi">SEND</button>
                     </div>
                     <div class="candidate-fooder">
                         <p class="text-center" style="font-size: 10px; margin-top: 10px;">
@@ -200,12 +218,12 @@
                     <div class="vote-panel">
                         <p>Cast your vote! What do you think about space? See vote progress bar below!</p>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-pink" style="width: 65%"></div>
-                            <div class="progress-bar progress-bar-teal" style="width: 35%"></div>
+                            <div class="progress-bar progress-bar-pink" style="width: 65%; border-radius: 0px;"></div>
+                            <div class="progress-bar progress-bar-teal" style="width: 35%; border-radius: 0px;"></div>
                         </div>
                         <div class="vote-buttons">
                             <button class="btn btn-pink">COOL</button>
-                            <button class="btn btn-default" style="border: 1px solid #00e6b8; color: #00e6b8;">LAME</button>
+                            <button class="btn btn-default" style="border: 1px solid #2ad392; color: #2ad392;">LAME</button>
                         </div>
                     </div>
                 </div>
