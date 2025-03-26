@@ -1,0 +1,447 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --dark-square: #769656;
+  --light-square: #eeeed2;
+  --dark-piece: #333333;
+  --light-piece: #f0f0f0;
+  --accent: #ff5252;
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+  --highlight: #ffd700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Roboto Mono', monospace;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #2a2a2a;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5), 0 0 40px rgba(255,215,0,0.1);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Chess pattern background */
+.chess-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(45deg, rgba(118, 150, 86, 0.1) 25%, transparent 25%), 
+    linear-gradient(-45deg, rgba(118, 150, 86, 0.1) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, rgba(118, 150, 86, 0.1) 75%), 
+    linear-gradient(-45deg, transparent 75%, rgba(118, 150, 86, 0.1) 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+  z-index: 0;
+  opacity: 0.2;
+}
+
+header {
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to bottom, #2a2a2a, rgba(42, 42, 42, 0.9));
+  border-bottom: 3px solid var(--accent);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Profile picture styling */
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  overflow: hidden;
+  margin-bottom: 25px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  background: linear-gradient(45deg, var(--dark-square), var(--bg-color));
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.profile-picture:hover img {
+  transform: scale(1.05);
+}
+
+.profile-picture::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid var(--highlight);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--highlight);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-picture:hover::after {
+  opacity: 1;
+}
+
+/* Game-style title */
+.name-title {
+  margin-bottom: 25px;
+}
+
+.name-title h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 32px;
+  color: var(--highlight);
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+  margin-bottom: 15px;
+}
+
+.name-title h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  color: var(--light-piece);
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+  letter-spacing: 1px;
+}
+
+/* Progress bar styling */
+.player-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+}
+
+.stat {
+  margin-bottom: 15px;
+  width: 28%;
+}
+
+.stat-name {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-value {
+  color: var(--highlight);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #444;
+  border: 2px solid #555;
+  position: relative;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--highlight));
+  position: relative;
+  overflow: hidden;
+}
+
+.progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.3) 40%,
+    rgba(255, 255, 255, 0.3) 60%,
+    rgba(255, 255, 255, 0.1) 80%
+  );
+  animation: shimmer 2s infinite linear;
+  transform: skewX(-20deg);
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-20deg); }
+  100% { transform: translateX(100%) skewX(-20deg); }  
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar {
+  position: relative;
+}
+
+/* Section title styling */
+.section-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.section-title::before {
+  content: "♞";
+  margin-right: 10px;
+  font-size: 24px;
+  color: var(--highlight);
+}
+
+.section {
+  margin-bottom: 40px;
+  padding: 15px;
+  background-color: rgba(42, 42, 42, 0.7);
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Skills styling */
+.skill-list {
+  list-style-type: none;
+}
+
+.skill-item {
+  margin-bottom: 15px;
+}
+
+.skill-name {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.skill-bar {
+  height: 12px;
+  background: #444;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #555;
+}
+
+.skill-level {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--highlight));
+}
+
+/* Level badge */
+.level-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: rgba(255, 82, 82, 0.2);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--light-piece);
+}
+
+/* Timeline styling */
+.timeline-item {
+  margin-bottom: 25px;
+  position: relative;
+  padding-left: 25px;
+}
+
+.timeline-item::before {
+  content: "♟";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--highlight);
+  font-size: 18px;
+}
+
+.timeline-period {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.timeline-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--light-piece);
+}
+
+.timeline-subtitle {
+  font-style: italic;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+/* Project styling */
+.project-item {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: rgba(42, 42, 42, 0.8);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  border-color: var(--highlight);
+}
+
+.project-title {
+  font-weight: bold;
+  color: var(--highlight);
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* Chess rating display */
+.chess-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: rgba(118, 150, 86, 0.2);
+  border-radius: 8px;
+  border: 1px solid var(--dark-square);
+}
+
+.chess-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.rating-details {
+  flex-grow: 1;
+}
+
+.rating-title {
+  font-weight: bold;
+  color: var(--highlight);
+  margin-bottom: 5px;
+}
+
+/* Tech badges */
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tech-badge {
+  padding: 4px 8px;
+  background-color: rgba(255, 82, 82, 0.2);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--light-piece);
+}
+
+/* Chess achievements */
+.chess-achievements {
+  margin-top: 15px;
+}
+
+.achievement {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.achievement-icon {
+  margin-right: 10px;
+  color: var(--highlight);
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(42, 42, 42, 0.9);
+  border-top: 2px solid var(--accent);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* Boss level indicator */
+.level-indicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: rgba(0,0,0,0.7);
+  border: 2px solid var(--highlight);
+  border-radius: 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: var(--highlight);
+}
+
+.level-indicator span {
+  margin-left: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+  
+  .player-stats {
+    flex-direction: column;
+  }
+  
+  .stat {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .level-indicator {
+    position: static;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  
+  header {
+    padding: 20px;
+  }
+}
