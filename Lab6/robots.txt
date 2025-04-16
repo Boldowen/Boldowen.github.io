@@ -1,4 +1,0 @@
-User-agent: AhrefsBot
-Disallow: /
-
-Sitemap: https://boldowen.github.io/Lab6/sitemap.xml
