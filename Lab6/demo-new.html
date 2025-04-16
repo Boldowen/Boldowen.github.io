@@ -585,5 +585,15 @@
     </svg>
   </div>
 </body>
+  <span id="email"></span>
+<script>
+  const user = "info";
+  const domain = "email.com";
+  const link = document.createElement("a");
+  link.href = `mailto:${user}@${domain}`;
+  link.textContent = `${user}@${domain}`;
+  document.getElementById("email").appendChild(link);
+</script>
+
 
 </html>
