@@ -11,7 +11,8 @@
 
 <script>
 function checkPalindrome() {
-  const input = document.getElementById("input").value;
+  input = document.getElementById("input").value;
+  input = input.toLowerCase().replace(/[^a-z0-9]/g, "");
   const resultElement = document.getElementById("result");
 
   if (input === null || input.trim() === "") {
