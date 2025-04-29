@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prime Sum Decomposition</title>
+</head>
+<body>
+
+  <input type="text" id="input" placeholder="Enter a number">
+  <button onclick="decomposeToPrimeSum()">Decompose</button>
+  <p id="result"></p>
+
+  <script>
+    function isPrime(n) {
+      if (n < 2) return false;
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+      }
+      return true;
+    }
+
+    function decomposeToPrimeSum(){
+      const inputElement = document.getElementById("input");
+      let num = parseInt(inputElement.value.trim());
+      const resultElement = document.getElementById("result");
+
+      if (isNaN(num) || num<2){
+        resultElement.textContent = "Please enter a number greater than 1.";
+        return;
+      }
+
+      let primes=[];
+      let current=num;
+      while (num>0){
+        if (isPrime(current) && num-current>=0){
+          primes.push(current);
+          num -= current;
+        } 
+        else{
+          current--;
+        }
+      }
+      resultElement.textContent = "Prime sum: " + primes.join(" + ");
+    }
+  </script>
+
+</body>
+</html>

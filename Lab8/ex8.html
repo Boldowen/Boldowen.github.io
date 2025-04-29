@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pedyaa</title>
+</head>
+<body>
+
+<input type="text" id="input" placeholder="Enter a number">
+<button onclick="Pedka()">Win</button>
+<p id="result"></p>
+
+<script>
+function Pedka(){
+  const input = document.getElementById("input").value;
+  document.getElementById("result").textContent = `Pick "${input-1}" .`;
+}
+</script>
+</body>
+
+</html>

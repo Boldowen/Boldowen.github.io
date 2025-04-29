@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Time-Based Box Display</title>
+  <style>
+    .box {
+      width: 50px;
+      height: 50px;
+      position: fixed;
+      z-index: 1000;
+    }
+    .morning {
+      background-color: green;
+      top: 10px;
+      left: 10px;
+    }
+    .evening {
+      background-color: red;
+      bottom: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function showBoxBasedOnTime(){
+    const hour = new Date().getHours();
+    const box = document.createElement('div');
+    box.classList.add('box');
+
+    if(hour>=6 && hour<18){
+      box.classList.add('morning');
+    } else {
+      box.classList.add('evening');
+    }
+
+    document.body.appendChild(box);
+  }
+
+  showBoxBasedOnTime();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Apart</title>
+</head>
+<body>
+
+<input type="text" id="input" placeholder="Enter a door number">
+<button onclick="Dooor()">Search</button>
+<p id="result"></p>
+
+<script>
+function Dooor(){
+  const input = document.getElementById("input").value;
+  if (input === null || input.trim() === ""){
+    document.getElementById("result").textContent="Enter a door number!.";
+    return;
+  }
+  if(isNaN(input)){
+    document.getElementById("result").textContent="Enter a valid number!.";
+    return;
+  }
+  if(input < 1 || input > 144){
+    document.getElementById("result").textContent="Enter a number between 1 and 144!.";
+    return;
+  }
+  Haalga=input-1;
+  orts=Haalga/36+1;
+  d=(Haalga%36)/4+1;
+  a=Haalga%4+1;
+  document.getElementById("result").textContent = `Door number ${input}: ${Math.floor(orts)} orts ${Math.floor(d)} davhar ${Math.floor(a)} ail`;    
+
+}
+</script>
+</body>
+</html>

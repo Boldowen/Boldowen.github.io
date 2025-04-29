@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Palindrome checker</title>
+</head>
+<body>
+
+<input type="text" id="input" placeholder="Enter a name">
+<button onclick="checkPalindrome()">Check</button>
+<p id="result"></p>
+
+<script>
+function checkPalindrome() {
+  const input = document.getElementById("input").value;
+  const resultElement = document.getElementById("result");
+
+  if (input === null || input.trim() === "") {
+    resultElement.textContent = "Enter a name!.";
+    return;
+  }
+
+  const reversedInput = input.split("").reverse().join("");
+
+  if (input === reversedInput) {
+    resultElement.textContent = `"${input}" is Palindrome.`;
+  } else {
+    resultElement.textContent = `"${input}" is not Palindrome.`;
+  }
+}
+</script>
+</body>
+</html>

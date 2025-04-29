@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Even Odd</title>
+</head>
+<body>
+  <h3>Array:</h3>
+  <input type="text" id="arrayInput" placeholder="Жишээ: 1,2,3,4,5">
+  <button onclick="separateEvenOdd()">Run</button>
+
+  <p id="even"></p>
+  <p id="odd"></p>
+
+  <script>
+    function separateEvenOdd() {
+      const input = document.getElementById("arrayInput").value;
+      const numbers = input.split(",").map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+      const evenNumbers = numbers.filter(num => num % 2 === 0);
+      document.getElementById("even").textContent = "Even: " + evenNumbers.join(", ");
+      const oddNumbers = numbers.filter(num => num % 2 !== 0);
+      document.getElementById("odd").textContent = "Odd: " + oddNumbers.join(", ");
+    }
+  </script>
+
+</body>
+</html>

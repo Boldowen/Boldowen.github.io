@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sum of Digits</title>
+</head>
+<body>
+
+<input type="text" id="input" placeholder="Enter a number">
+<button onclick="SumOFDigit()">Sum</button>
+<p id="result"></p>
+
+<script>
+function SumOFDigit(){
+  const input = document.getElementById("input").value;
+  const resultElement = document.getElementById("result");
+
+  if (input === null || input.trim() === ""){
+    resultElement.textContent="Enter a number!.";
+    return;
+  }
+  const digits = input.split("").map(Number);
+  sum=0;
+  while(digits.length > 0){
+    sum += digits.pop();
+  }
+  resultElement.textContent = `Sum of digits of "${input}" is ${sum}.`;
+}
+</script>
+</body>
+
+</html>
