@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валютын Хөрвүүлэгч</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="input-group">
+            <label for="amount">Value:</label>
+            <input type="text" id="amount" value="0" readonly>
+            <div class="calculator-buttons">
+                <button onclick="appendToAmount('1')">1</button>
+                <button onclick="appendToAmount('2')">2</button>
+                <button onclick="appendToAmount('3')">3</button>
+                <button onclick="appendToAmount('4')">4</button>
+                <button onclick="appendToAmount('5')">5</button>
+                <button onclick="appendToAmount('6')">6</button>
+                <button onclick="appendToAmount('7')">7</button>
+                <button onclick="appendToAmount('8')">8</button>
+                <button onclick="appendToAmount('9')">9</button>
+                <button onclick="appendToAmount('0')">0</button>
+                <button onclick="tseg()">.</button>
+                <button onclick="clearAmount()">C</button>
+            </div>
+        </div>
+        <div class="select-group">
+            <label for="fromCurrency">From:</label>
+            <select id="fromCurrency"></select>
+        </div>
+        <div class="select-group">
+            <label for="toCurrency">To:</label>
+            <select id="toCurrency"></select>
+        </div>
+        <button onclick="convertCurrency()">Enter</button>
+        <div class="result">
+            <label>result:</label>
+            <span id="resultAmount"></span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
