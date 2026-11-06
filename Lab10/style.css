@@ -8,9 +8,7 @@
       --sky-blue: #87CEEB;     /* Тэнгэрийн хөх (үндсэн товч) */
       --dark-text: #4A3B31;    /* Бараан бичгийн өнгө */
       --light-text: #F5EFE6;   /* Цайвар бичгийн өнгө */
-      --border-color: #6F4F28; /* Хүрээний өнгө */
-      --success-green: #5E8C6A; /* Зөв (ногоон) */
-      --hint-yellow: #E8D8B5;  /* Сануулгын шар */
+  /* Сануулгын шар */
 
       /* Үсгийн фонт */
       --font-heading: 'Cinzel Decorative', serif; /* Гарчигны фонт */
